@@ -5,7 +5,11 @@ class MessagesController < ApplicationController
   end
 
   def create
-    current_user.messages.create content: params[:message][:content]
+    message = current_user.messages.build content: params[:message][:content]
+    if message.save!
+      message.mentions.each do |mention|
+        ActionCable.server.broadcast "room_channel_user_#{mention.id}", mention: true
+      end
+    end
   end
-
 end

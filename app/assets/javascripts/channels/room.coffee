@@ -7,6 +7,7 @@ App.room = App.cable.subscriptions.create "RoomChannel",
 
   received: (data) ->
     $('#messages').append data['message']
+    alert("You have a new mention") if data.mention
     # Called when there's incoming data on the websocket for this channel
 
   speak: (message)->
