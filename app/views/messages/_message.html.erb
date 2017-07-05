@@ -1,3 +1,5 @@
+<% cache message do %>
 <div class="messages">
-  <p><%= message.content %></p>
+  <p> <strong><%= message.user.email %></strong> <%= message.content %></p>
 </div>
+<% end %>

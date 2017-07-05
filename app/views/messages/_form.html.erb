@@ -1,0 +1,16 @@
+<div class="message-input" data-behavior="room_speaker">
+  <%= form_for(@message, remote: true) do |f| %>
+    <%= f.text_area :content, class: 'text_area' %>
+    <%= f.submit "Send", class: 'myForm' %>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  $('.message-input').keyup(function(event){
+    if(event.keyCode == 13){
+      $('.myForm').click()
+      event.target.value = ''
+      event.preventDefault()
+    }
+  })
+</script>
